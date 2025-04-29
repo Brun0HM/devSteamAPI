@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20250429114907_Carrinho.cs" />
+    <Compile Remove="Migrations\20250429114907_Carrinho.Designer.cs" />
+    <Compile Remove="Migrations\20250429121335_Carrinho.cs" />
+    <Compile Remove="Migrations\20250429121335_Carrinho.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.15" />

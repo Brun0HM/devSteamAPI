@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using devSteamAPI.Data;
 
@@ -11,9 +12,11 @@ using devSteamAPI.Data;
 namespace devSteamAPI.Migrations
 {
     [DbContext(typeof(APIContext))]
-    partial class APIContextModelSnapshot : ModelSnapshot
+    [Migration("20250429114907_Carrinho")]
+    partial class Carrinho
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,10 +164,10 @@ namespace devSteamAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DataCriacao")
+                    b.Property<DateTime>("DataFinalizacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataFinalizacao")
+                    b.Property<DateTime>("DateCriacao")
                         .HasColumnType("datetime2");
 
                     b.Property<bool?>("Finalizado")
@@ -175,9 +178,6 @@ namespace devSteamAPI.Migrations
 
                     b.Property<string>("UsuarioId1")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("ValorTotal")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("CarrinhoId");
 
