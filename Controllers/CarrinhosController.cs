@@ -116,6 +116,7 @@ namespace APIDevSteamJau.Controllers
         }
 
         [HttpPost]
+        [Route("FinalizarCompra/{id}")]
         public async Task<IActionResult> FinalizarCompra(Guid id)
         {
             // Se carrinho de compra existe
