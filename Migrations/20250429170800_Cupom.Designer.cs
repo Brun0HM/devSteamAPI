@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using devSteamAPI.Data;
 
@@ -11,9 +12,11 @@ using devSteamAPI.Data;
 namespace devSteamAPI.Migrations
 {
     [DbContext(typeof(APIContext))]
-    partial class APIContextModelSnapshot : ModelSnapshot
+    [Migration("20250429170800_Cupom")]
+    partial class Cupom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -219,9 +222,6 @@ namespace devSteamAPI.Migrations
                     b.Property<int>("Desconto")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LimiteUso")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -229,30 +229,6 @@ namespace devSteamAPI.Migrations
                     b.HasKey("CupomId");
 
                     b.ToTable("Cupons", (string)null);
-                });
-
-            modelBuilder.Entity("devSteamAPI.Models.CupomCarrinho", b =>
-                {
-                    b.Property<Guid>("CupomCarrinhoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CarrinhoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CupomId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Expirado")
-                        .HasColumnType("bit");
-
-                    b.HasKey("CupomCarrinhoId");
-
-                    b.HasIndex("CarrinhoId");
-
-                    b.HasIndex("CupomId");
-
-                    b.ToTable("CuponsCarrinhos", (string)null);
                 });
 
             modelBuilder.Entity("devSteamAPI.Models.ItemCarrinho", b =>
@@ -493,29 +469,10 @@ namespace devSteamAPI.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("devSteamAPI.Models.CupomCarrinho", b =>
-                {
-                    b.HasOne("devSteamAPI.Models.Carrinho", "Carrinho")
-                        .WithMany()
-                        .HasForeignKey("CarrinhoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("devSteamAPI.Models.Cupom", "Cupom")
-                        .WithMany()
-                        .HasForeignKey("CupomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Carrinho");
-
-                    b.Navigation("Cupom");
-                });
-
             modelBuilder.Entity("devSteamAPI.Models.ItemCarrinho", b =>
                 {
                     b.HasOne("devSteamAPI.Models.Carrinho", "Carrinho")
-                        .WithMany("ItensCarrinhos")
+                        .WithMany()
                         .HasForeignKey("CarrinhoId");
 
                     b.HasOne("devSteamAPI.Models.Jogo", "Jogo")
@@ -555,11 +512,6 @@ namespace devSteamAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Jogo");
-                });
-
-            modelBuilder.Entity("devSteamAPI.Models.Carrinho", b =>
-                {
-                    b.Navigation("ItensCarrinhos");
                 });
 #pragma warning restore 612, 618
         }

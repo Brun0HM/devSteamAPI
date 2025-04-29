@@ -10,5 +10,7 @@
         public DateTime? DataFinalizacao { get; set; }
         public decimal ValorTotal { get; set; }
 
+        // Adicionando a propriedade ItensCarrinhos
+        public ICollection<ItemCarrinho> ItensCarrinhos { get; set; } = new List<ItemCarrinho>();
     }
 }

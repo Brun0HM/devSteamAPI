@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using devSteamAPI.Data;
 
@@ -11,9 +12,11 @@ using devSteamAPI.Data;
 namespace devSteamAPI.Migrations
 {
     [DbContext(typeof(APIContext))]
-    partial class APIContextModelSnapshot : ModelSnapshot
+    [Migration("20250429173233_CuponsCarrinho")]
+    partial class CuponsCarrinho
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -515,7 +518,7 @@ namespace devSteamAPI.Migrations
             modelBuilder.Entity("devSteamAPI.Models.ItemCarrinho", b =>
                 {
                     b.HasOne("devSteamAPI.Models.Carrinho", "Carrinho")
-                        .WithMany("ItensCarrinhos")
+                        .WithMany()
                         .HasForeignKey("CarrinhoId");
 
                     b.HasOne("devSteamAPI.Models.Jogo", "Jogo")
@@ -555,11 +558,6 @@ namespace devSteamAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Jogo");
-                });
-
-            modelBuilder.Entity("devSteamAPI.Models.Carrinho", b =>
-                {
-                    b.Navigation("ItensCarrinhos");
                 });
 #pragma warning restore 612, 618
         }
